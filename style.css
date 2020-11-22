@@ -58,7 +58,9 @@ body {
 .line {
   display: flex;
 }
-
+.red{
+  flex-grow: initial;
+}
 .key {
   width: 50px;
   height: 50px;
