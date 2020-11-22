@@ -12,6 +12,7 @@
 *{
     magring: 0;
     padding: 0;
+<<<<<<< HEAD
 =======
 * {
   margin: 0;
@@ -26,6 +27,9 @@ body {
 }
 
 >>>>>>> 369779d2e54ea64a03f890bc57e5bd0f857e9d61
+=======
+}chosh
+>>>>>>> f768a64308f0238bf50445d4c0bf064ed0013e0a
 .container {
   width: 100%;
   display: flex;
