@@ -30,7 +30,7 @@ body {
 .word {
   display: flex;
   opacity: 0;
-  transition: .9s;
+  transition: 0.9s;
 }
 
 .letter-cont {
@@ -51,15 +51,11 @@ body {
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: .9s;
+  transition: 0.9s;
 }
-
 
 .line {
   display: flex;
-}
-.red{
-  flex-grow: initial;
 }
 .key {
   width: 50px;
@@ -96,15 +92,11 @@ body {
   animation: vibration 0.5s ease-in 1 alternate;
   transform: scale(0);
 }
-.none{
+.none {
   display: none;
 }
 
-
-
-
 @keyframes vibration {
-
   0%,
   100% {
     background-color: red;
@@ -117,12 +109,10 @@ body {
 
   20% {
     transform: translateX(5px);
-
   }
 
   40% {
     transform: translateX(-5px);
-
   }
 
   50% {
@@ -131,13 +121,11 @@ body {
 
   60% {
     transform: translateX(5px);
-
   }
 
   100% {
     transform: translateX(-5px);
 
     transform: scale(0);
-
   }
 }
