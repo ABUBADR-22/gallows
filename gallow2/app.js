@@ -1,30 +1,59 @@
 
 let words = ["ГОНДЖУБАС", "СИГАРА", "ШПАК"],
-   btnSt = document.querySelector('.reset');
+   btnSt = document.querySelector('.reset'),
+   btnNx = document.querySelector('.next');
 
-btnSt.addEventListener("click", () => {
-   let word = words[Math.floor(Math.random() * 3)], 
+btnSt.addEventListener("click", function fred() {
+   let word = words[Math.floor(Math.random() * words.length)],
       div = document.querySelector('.fer'),
       key_buttons = document.querySelectorAll(".key"),
+      i = 0;
       board = document.querySelector('.gallows__keyboard'),
-      arrWord = word.split('');
-      
+      arr2 = [],
+      arr3 = [];
+
+   for (let i = 0; i < words.length; i++) {
+      word2 = Math.floor(Math.random() * words.length);
+      if (arr2.indexOf(word2) == -1) {
+         arr2.push(word2);
+         arr3[word2] = words[i];
+      } else {
+         i--;
+      }
+   }
+ key_buttons.forEach((e) => {
+      e.classList.remove('vibration', "delete");
+   });
+
+   let arrWord = arr3[0].split('');
+   function fred(e) {
+      e.forEach(function (item, i, arr) {
+         div.insertAdjacentHTML("afterBegin", `<div class="
+         letter-cont none"><div class="letter">`);
+         let letter = document.querySelector('.letter');
+         letter.insertAdjacentHTML("afterBegin", arr[arr.length - i - 1]);
+         div.insertAdjacentHTML("afterBegin", `</div></div>`);
+      });
+      console.log(e)
+   }
+   
+   fred(arrWord);
+
+   btnNx.addEventListener("click", function fred() {
+      if (i < words.length){
+         i++;
+         arrWord = arr3[i].split('');
+         fred(arrWord);
+      }
+      else{
+         i = -1;
+      }
+   });
+
    btnSt.classList.toggle('startbtn');
    board.classList.toggle('start');
    div.classList.toggle('start');
    div.innerHTML = '';
-   
-   key_buttons.forEach((e) => {
-      e.classList.remove('vibration', "delete");
-   });
-
-   arrWord.forEach(function (item, i, arr) {
-      div.insertAdjacentHTML("afterBegin", `<div class="
-   letter-cont none"><div class="letter">`);
-      let letter = document.querySelector('.letter');
-      letter.insertAdjacentHTML("afterBegin", arr[arr.length - i - 1]);
-      div.insertAdjacentHTML("afterBegin", `</div></div>`);
-   });
 
    let letters = document.querySelectorAll('.letter');
 
