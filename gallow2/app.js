@@ -7,7 +7,7 @@ btnSt.addEventListener("click", function fred() {
    let word = words[Math.floor(Math.random() * words.length)],
       div = document.querySelector('.fer'),
       key_buttons = document.querySelectorAll(".key"),
-      i = 0;
+      y = 0;
       board = document.querySelector('.gallows__keyboard'),
       arr2 = [],
       arr3 = [];
@@ -27,28 +27,30 @@ btnSt.addEventListener("click", function fred() {
 
    let arrWord = arr3[0].split('');
    function fred(e) {
-      e.forEach(function (item, i, arr) {
+      arrWord.forEach(function (item, i, arr) {
          div.insertAdjacentHTML("afterBegin", `<div class="
          letter-cont none"><div class="letter">`);
          let letter = document.querySelector('.letter');
          letter.insertAdjacentHTML("afterBegin", arr[arr.length - i - 1]);
          div.insertAdjacentHTML("afterBegin", `</div></div>`);
       });
-      console.log(e)
+      console.log(arrWord)
    }
    
    fred(arrWord);
 
-   btnNx.addEventListener("click", function fred() {
-      if (i < words.length){
-         i++;
-         arrWord = arr3[i].split('');
-         fred(arrWord);
-      }
-      else{
-         i = -1;
-      }
-   });
+   // btnNx.addEventListener("click", function fred() {
+   //    if (y < words.length){
+   //       y++;
+   //       arrWord = arr3[y].split('');
+   //       console.log(arrWord);
+   //       fred(arrWord);
+         
+   //    }
+   //    else{
+   //       y = -1;
+   //    }
+   // });
 
    btnSt.classList.toggle('startbtn');
    board.classList.toggle('start');
@@ -56,6 +58,7 @@ btnSt.addEventListener("click", function fred() {
    div.innerHTML = '';
 
    let letters = document.querySelectorAll('.letter');
+   console.log(letters)
 
    key_buttons.forEach((element) => {
       element.addEventListener("click", function (e) {
