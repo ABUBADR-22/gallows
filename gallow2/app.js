@@ -3,7 +3,9 @@ let words = ["ГОНДЖУБАС", "СИГАРА", "ШПАК"],
    btnSt = document.querySelector('.reset'),
    btnNx = document.querySelector('.next');
 
-btnSt.addEventListener("click", function fred() {
+
+
+btnSt.addEventListener("click", function () {
    let div = document.querySelector('.fer'),
       key_buttons = document.querySelectorAll(".key"),
       y = 0,
@@ -43,39 +45,36 @@ btnSt.addEventListener("click", function fred() {
       });
 
       let letters = document.querySelectorAll('.letter');
-
-      key_buttons.forEach((element) => {
-         element.addEventListener("click", function (e) {
-            
-            console.log(e.target.textContent);
-
-            if (el.includes(e.target.textContent)) {
-               e.target.classList.add('delete');
-               for (let i in el) {
-                  if (el[i] === e.target.textContent) {
-                     letters[i].style.opacity = "1";
-                  }
+      function gret(e) {
+         if (el.includes(e.target.textContent)) {
+            e.target.classList.add('delete');
+            for (let i in el) {
+               if (el[i] === e.target.textContent) {
+                  letters[i].style.opacity = "1";
                }
-            } else {
-               e.target.classList.add('vibration');
             }
-         });
+         } else {
+            e.target.classList.add('vibration');
+         }
+      }
+      key_buttons.forEach((element) => {
+         element.onclick = gret;
       });
    }
+   
    fred(arrWord);
 
-   btnNx.addEventListener("click", function fredded() {
+   btnNx.onclick = () =>{
+     div.innerHTML = '';
       if (y < words.length - 1) {
          y++;
-         div.innerHTML = '';
          arrWord = arr3[y].split('');
-         console.log(arrWord);
-         fred(arrWord);
       }
       else {
-         y = -1;
+         alert('Вы выграли')
+         y = 0;
+         arrWord = arr3[y].split('');
       }
-   });
-
-
-})
+      fred(arrWord);
+   };
+});
