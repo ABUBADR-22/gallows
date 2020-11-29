@@ -8,20 +8,38 @@ body {
    padding: 0;
    box-sizing: border-box;
 }
-.fer {
+.cont {
+   margin-top: 100px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+.life {
+   position: absolute;
+   right: 7%;
+   top: 5%;
+}
+.life::before {
+   content: url(./heart.png);
+   position: relative;
+   top: 5px;
+   right: 10px;
+}
+.word {
    display: flex;
    flex-wrap: wrap;
-   width: 100%;
-   height: 30vh;
    justify-content: center;
    align-items: flex-end;
-   opacity: 0;
 }
 .letter-cont {
    border: 1px solid black;
    margin-right: 2px;
    width: 150px;
    height: 100px;
+}
+
+.wrapper {
+   opacity: 0;
 }
 
 button {
@@ -34,9 +52,42 @@ button {
    border-radius: 4px;
    border: 1px solid black;
 }
-.next{
+
+.window {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: #484646b4;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    opacity: 0;
+   visibility: hidden;
 }
+.window__modal {
+   background: cornsilk;
+   width: 100vh;
+   height: 20%;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   border-radius: 5px;
+}
+.window__txt {
+   width: 100%;
+   text-align: center;
+   padding-top: 30px;
+}
+.window__reset {
+   margin: 0;
+}
+
+.next {
+   opacity: 0;
+   visibility: hidden;
+}
+
 .letter {
    display: flex;
    justify-content: center;
@@ -45,6 +96,14 @@ button {
    transition: 0.5s;
    opacity: 0;
 }
+
+.window_str{
+   opacity: 1;
+   visibility: visible;
+}
+.letters_str{
+   opacity: 1;
+}
 .gallows__keyboard {
    display: flex;
    flex-direction: column;
@@ -52,12 +111,14 @@ button {
    align-items: center;
    opacity: 0;
    transition: 0.9s;
+   visibility: hidden;
 }
 .delete {
    transform: scale(0);
 }
 .start {
    opacity: 1;
+   visibility: visible;
 }
 .reset.startbtn span {
    display: none;
@@ -93,7 +154,6 @@ button {
    cursor: pointer;
    background: #000000;
    color: #ffffff;
-   /* animation: tremor 0.5s ease-in 1 alternate; */
 }
 .delete {
    transform: scale(0);

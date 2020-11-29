@@ -1,22 +1,73 @@
 
 let words = ["ГОНДЖУБАС", "СИГАРА", "ШПАК"],
    btnSt = document.querySelector('.reset'),
-   btnNx = document.querySelector('.next');
+   wrapper = document.querySelector('.wrapper'),
+   div = document.querySelector('.word'),
+   life = document.querySelector('.life'),
+   board = document.querySelector('.gallows__keyboard'),
+   key_buttons = document.querySelectorAll(".key"),
+   modalWindow = document.querySelector(".window"),
+   modalTxt = document.querySelector(".window__txt"),
+   btnNx = document.querySelector('.next'),
+   btnWindow = document.querySelector('.window__reset');
 
+function generatorWord(arrWord, ind) {
+   btnNx.classList.remove('window_str');
+   key_buttons.forEach((e) => {
+      e.classList.remove('vibration', "delete");
+   });
 
+   arrWord.forEach(function (item, i, arr) {
+      div.insertAdjacentHTML("afterBegin", `<div class="
+         letter-cont none"><div class="letter">`);
+      let letter = document.querySelector('.letter');
+      letter.insertAdjacentHTML("afterBegin", arr[arr.length - i - 1]);
+      div.insertAdjacentHTML("afterBegin", `</div></div>`);
+   });
 
-btnSt.addEventListener("click", function () {
-   let div = document.querySelector('.fer'),
-      key_buttons = document.querySelectorAll(".key"),
-      y = 0,
-      board = document.querySelector('.gallows__keyboard'),
+   let letters = document.querySelectorAll('.letter');
+   function gret(e) {
+      if (arrWord.includes(e.target.textContent)) {
+         e.target.classList.add('delete');
+         for (let i in arrWord) {
+            if (arrWord[i] === e.target.textContent) {
+               letters[i].classList.add('letters_str');
+            }
+         }
+      } else {
+         e.target.classList.add('vibration');
+         ind--;
+         life.innerHTML = ind;
+         if (ind == 0) {
+            modalTxt.innerHTML = "Вы проиграли"
+            modalWindow.classList.add('window_str');
+         }
+      }
+      let press = document.querySelectorAll(".letters_str");
+      console.log(press.length)
+      console.log(arrWord.length)
+      if (press.length == arrWord.length) {
+         btnNx.classList.add('window_str');
+      }
+   }
+   key_buttons.forEach((element) => {
+      element.onclick = gret;
+   });
+
+}
+
+function funBtn() {
+   let index = 0,
+      lifeInd = 4,
       arr2 = [],
       arr3 = [];
 
+   life.innerHTML = lifeInd;
    btnSt.classList.toggle('startbtn');
    board.classList.toggle('start');
-   div.classList.toggle('start');
-   btnNx.classList.toggle('start');
+   wrapper.classList.toggle('start');
+   modalWindow.classList.remove('window_str');
+   btnNx.classList.remove('window_str');
    div.innerHTML = '';
 
    for (let i = 0; i < words.length; i++) {
@@ -28,53 +79,23 @@ btnSt.addEventListener("click", function () {
          i--;
       }
    }
-
    let arrWord = arr3[0].split('');
 
-   function fred(el) {
-      key_buttons.forEach((e) => {
-         e.classList.remove('vibration', "delete");
-      });
+   generatorWord(arrWord, lifeInd);
 
-      el.forEach(function (item, i, arr) {
-         div.insertAdjacentHTML("afterBegin", `<div class="
-         letter-cont none"><div class="letter">`);
-         let letter = document.querySelector('.letter');
-         letter.insertAdjacentHTML("afterBegin", arr[arr.length - i - 1]);
-         div.insertAdjacentHTML("afterBegin", `</div></div>`);
-      });
-
-      let letters = document.querySelectorAll('.letter');
-      function gret(e) {
-         if (el.includes(e.target.textContent)) {
-            e.target.classList.add('delete');
-            for (let i in el) {
-               if (el[i] === e.target.textContent) {
-                  letters[i].style.opacity = "1";
-               }
-            }
-         } else {
-            e.target.classList.add('vibration');
-         }
-      }
-      key_buttons.forEach((element) => {
-         element.onclick = gret;
-      });
-   }
-   
-   fred(arrWord);
-
-   btnNx.onclick = () =>{
-     div.innerHTML = '';
-      if (y < words.length - 1) {
-         y++;
-         arrWord = arr3[y].split('');
+   btnNx.onclick = () => {
+      div.innerHTML = '';
+      if (index < words.length - 1) {
+         index++;
+         arrWord = arr3[index].split('');
       }
       else {
-         alert('Вы выграли')
-         y = 0;
-         arrWord = arr3[y].split('');
+         modalTxt.innerHTML = "Вы выграли"
+         modalWindow.classList.add('window_str');
       }
-      fred(arrWord);
+      generatorWord(arrWord);
    };
-});
+}
+
+btnSt.addEventListener("click", funBtn);
+btnWindow.addEventListener("click", funBtn);
